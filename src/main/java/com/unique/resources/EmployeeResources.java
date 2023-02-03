@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -18,14 +19,6 @@ public class EmployeeResources {
 
 		@Inject
 		EmployeeService es;
-	
-//	@GET	
-//	@Path("/list")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response getListEmp() {
-//			List<Employee> list  = es.getAllPersons();
-//		return Response.ok(list).build();
-//	}
 
 	
 		@GET	
@@ -34,6 +27,13 @@ public class EmployeeResources {
 				List<Employee> list  = es.getAllPersons();
 				return new View("/view.jsp", list,"list");
 		}
-	
+		
+		@GET	
+		@Path("/delete/{id}")
+		public View deleteEmp(@PathParam("id") Integer id) {
+				es.deleteEmp(id);
+				return new View("/view.jsp");
+		}
+		
 	
 }

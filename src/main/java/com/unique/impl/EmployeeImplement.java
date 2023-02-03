@@ -19,14 +19,17 @@ public class EmployeeImplement implements EmployeeService{
 	public Employee AddEmp(String name, String city, String state, String phone) {
 		return null;
 	}
-
+	
 	@Override
 	public Employee UpdateEmp(int id, String name, String city, String state, String phone) {
 		return null;
 	}
-
+	
+	@Transactional
 	@Override
 	public Employee deleteEmp(int id) {
+			Employee e = em.find(Employee.class,id);
+			em.remove(e);
 		return null;
 	}
 	

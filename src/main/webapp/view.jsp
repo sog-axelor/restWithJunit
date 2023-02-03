@@ -18,6 +18,8 @@
             <th>City</th>
             <th>State</th>
             <th>Phone</th>
+            <th>Operation</th>
+            
         </tr>
 			  <% for (Employee e :(List<Employee>)request.getAttribute("list")) { %>
 			<tr width="42" height="42">
@@ -26,6 +28,7 @@
 				<td><%=e.getCity()%></td>
 				<td><%=e.getState()%></td>
 				<td><%=e.getPhone()%></td>
+				<td><a href="delete/<%=e.getId()%>">Delete</a></td>
 			</tr>
 			<%
 			}
