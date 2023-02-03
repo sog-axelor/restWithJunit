@@ -4,30 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Employee {
 	
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name,city,state,phone;
 	
-	
-	public Employee(String name, String city, String state, String phone) {
-		super();
-		this.name = name;
-		this.city = city;
-		this.state = state;
-		this.phone = phone;
-	}
-	
-	
-	public Employee() {
-		super();
-	}
-
-
 	public int getId() {
 		return id;
 	}
@@ -59,4 +46,17 @@ public class Employee {
 		this.phone = phone;
 	}
 	
+	public Employee(String name, String city, String state, String phone) {
+		super();
+		this.name = name;
+		this.city = city;
+		this.state = state;
+		this.phone = phone;
+	}
+	
+	
+	public Employee() {
+		super();
+	}
+
 }

@@ -1,20 +1,27 @@
 package com.unique.resources;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
-
+import com.google.inject.Inject;
+import com.unique.Db.Employee;
+import com.unique.service.EmployeeService;
 @Path("/emp")
 public class EmployeeResources {
 
+		@Inject
+		EmployeeService es;
+	
 	@GET	
-	@Path("/hello")
+	@Path("/list")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response hello() {
-		return Response.ok("Hello World").build();
+	public Response getListEmp() {
+			List<Employee> list  = es.getAllPersons();
+		return Response.ok(list).build();
 	}
 }

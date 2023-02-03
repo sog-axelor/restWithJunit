@@ -1,12 +1,20 @@
 package com.unique.impl;
 
 import java.util.List;
-
 import com.unique.Db.Employee;
 import com.unique.service.EmployeeService;
+import javax.persistence.EntityManager;
+import com.google.inject.Inject;
+import com.google.inject.Provider;
+import com.google.inject.persist.Transactional;
 
 public class EmployeeImplement implements EmployeeService{
-
+	@Inject
+	private EntityManager em;
+	
+	@Inject
+	private Provider<EntityManager> emp;
+	
 	@Override
 	public Employee AddEmp(String name, String city, String state, String phone) {
 		return null;
@@ -21,11 +29,18 @@ public class EmployeeImplement implements EmployeeService{
 	public Employee deleteEmp(int id) {
 		return null;
 	}
-
+	
+	@Transactional
 	@Override
 	public List<Employee> getAllPersons() {
-		return null;
+		em = emp.get();
+		List<Employee> emplist = em.createQuery("from Employee",Employee.class).getResultList();
+		System.out.println(emplist);
+
+		return emplist;
 	}
+	
+
 
 	@Override
 	public Employee getEmpbyid(int id) {
